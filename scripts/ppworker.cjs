@@ -16,7 +16,7 @@ const updateAppName = async (appName) => {
     }
 }
 
-const updateWebUrl = async (webUrl) => {
+const updateWebUrl = async (webUrl, safeArea) => {
     try {
         // Assuming ContentView.swift
         const contentViewPath = path.join(
@@ -27,6 +27,11 @@ const updateWebUrl = async (webUrl) => {
         content = content.replace(
             /WebView\(url: URL\(string: ".*?"\)!\)/,
             `WebView(url: URL(string: "${webUrl}")!)`
+        )
+        // update safeArea
+        content = content.replace(
+            /\.ignoresSafeArea(edges: .all)/,
+            `.ignoresSafeArea(edges: .${safeArea})`
         )
         await fs.writeFile(contentViewPath, content)
         console.log(`✅ Updated web URL to: ${webUrl}`)
@@ -104,7 +109,8 @@ const updateBundleId = async (newBundleId) => {
 
 const main = async () => {
     const { webview } = ppconfig.phone
-    const { name, showName, version, webUrl, id, pubBody, debug } = ppconfig.ios
+    const { name, showName, version, webUrl, id, pubBody, debug, safeArea } =
+        ppconfig.ios
 
     // Update app name if provided
     await updateAppName(showName)
