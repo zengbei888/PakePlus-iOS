@@ -30,8 +30,8 @@ const updateWebUrl = async (webUrl, safeArea) => {
         )
         // update safeArea
         content = content.replace(
-            /.ignoresSafeArea(edges: .all)/,
-            `.ignoresSafeArea(edges: .${safeArea})`
+            /edges: \.all/,
+            `edges: .${safeArea}`
         )
         await fs.writeFile(contentViewPath, content)
         console.log(`✅ Updated web URL to: ${webUrl}`)
