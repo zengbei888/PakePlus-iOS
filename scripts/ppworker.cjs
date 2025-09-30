@@ -116,7 +116,7 @@ const main = async () => {
     await updateAppName(showName)
 
     // Update web URL if provided
-    await updateWebUrl(webUrl)
+    await updateWebUrl(webUrl, safeArea)
 
     // update debug
     await updateWebEnv(debug, webview)
