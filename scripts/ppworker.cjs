@@ -34,32 +34,35 @@ const updateWebUrl = async (webUrl, safeArea) => {
             console.log('safeArea is top')
             content = content.replace(
                 /edges: \[\]/,
-                `edges: [.left, .right, .bottom]`
+                `edges: [.leading, .trailing, .bottom]`
             )
         } else if (safeArea === 'bottom') {
             console.log('safeArea is bottom')
             content = content.replace(
                 /edges: \[\]/,
-                `edges: [.top, .left, .right]`
+                `edges: [.top, .leading, .trailing]`
             )
         } else if (safeArea === 'left') {
             console.log('safeArea is left')
             content = content.replace(
                 /edges: \[\]/,
-                `edges: [.top, .right, .bottom]`
+                `edges: [.top, .trailing, .bottom]`
             )
         } else if (safeArea === 'right') {
             console.log('safeArea is right')
             content = content.replace(
                 /edges: \[\]/,
-                `edges: [.top, .left, .bottom]`
+                `edges: [.top, .leading, .bottom]`
             )
         } else if (safeArea === 'horizontal') {
             console.log('safeArea is horizontal')
             content = content.replace(/edges: \[\]/, `edges: [.top, .bottom]`)
         } else if (safeArea === 'vertical') {
             console.log('safeArea is vertical')
-            content = content.replace(/edges: \[\]/, `edges: [.left, .right]`)
+            content = content.replace(
+                /edges: \[\]/,
+                `edges: [.leading, .trailing]`
+            )
         }
         await fs.writeFile(contentViewPath, content)
         console.log(`✅ Updated web URL to: ${webUrl}`)
