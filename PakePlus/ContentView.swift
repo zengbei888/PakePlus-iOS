@@ -16,7 +16,7 @@ struct ContentView: View {
             //     .ignoresSafeArea()
             // webview
             WebView(url: URL(string: "https://juejin.cn/")!)
-                .ignoresSafeArea(edges: .all)
+                .ignoresSafeArea(edges: [])
         }
     }
 }
