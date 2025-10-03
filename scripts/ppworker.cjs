@@ -28,11 +28,39 @@ const updateWebUrl = async (webUrl, safeArea) => {
             /WebView\(url: URL\(string: ".*?"\)!\)/,
             `WebView(url: URL(string: "${webUrl}")!)`
         )
-        // update safeArea
-        content = content.replace(
-            /edges: \.all/,
-            `edges: .${safeArea}`
-        )
+        if (safeArea === 'all') {
+            console.log('safeArea is all')
+        } else if (safeArea === 'top') {
+            console.log('safeArea is top')
+            content = content.replace(
+                /edges: \[\]/,
+                `edges: [.left, .right, .bottom]`
+            )
+        } else if (safeArea === 'bottom') {
+            console.log('safeArea is bottom')
+            content = content.replace(
+                /edges: \[\]/,
+                `edges: [.top, .left, .right]`
+            )
+        } else if (safeArea === 'left') {
+            console.log('safeArea is left')
+            content = content.replace(
+                /edges: \[\]/,
+                `edges: [.top, .right, .bottom]`
+            )
+        } else if (safeArea === 'right') {
+            console.log('safeArea is right')
+            content = content.replace(
+                /edges: \[\]/,
+                `edges: [.top, .left, .bottom]`
+            )
+        } else if (safeArea === 'horizontal') {
+            console.log('safeArea is horizontal')
+            content = content.replace(/edges: \[\]/, `edges: [.top, .bottom]`)
+        } else if (safeArea === 'vertical') {
+            console.log('safeArea is vertical')
+            content = content.replace(/edges: \[\]/, `edges: [.left, .right]`)
+        }
         await fs.writeFile(contentViewPath, content)
         console.log(`✅ Updated web URL to: ${webUrl}`)
     } catch (error) {
