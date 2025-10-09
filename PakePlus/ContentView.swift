@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let baseURL = Bundle.main.object(forInfoDictionaryKey: "BASE_URL") as? String ?? ""
+    
     var body: some View {
         // BottomMenuView()
         ZStack {
@@ -15,7 +18,7 @@ struct ContentView: View {
             // Color.white
             //     .ignoresSafeArea()
             // webview
-            WebView(url: URL(string: "https://juejin.cn/")!)
+            WebView(url: URL(string: baseURL)!)
                 .ignoresSafeArea(edges: [])
         }
     }

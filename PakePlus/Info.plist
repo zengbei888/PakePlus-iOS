@@ -11,5 +11,7 @@
 	</dict>
 	<key>NSCameraReactionEffectGesturesEnabledDefault</key>
 	<true/>
+    <key>BASE_URL</key>
+    <string>https://www.bilibili.com</string>
 </dict>
 </plist>
